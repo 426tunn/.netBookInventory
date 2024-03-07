@@ -1,0 +1,31 @@
+﻿<Properties StartupConfiguration="{8306621A-B527-42BF-B72E-FAEFCC8013E1}|https">
+  <MonoDevelop.Ide.ItemProperties.BookStoreManager.Api PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="BookStoreManager.Api/Controllers/AuthenticationController.cs">
+    <Files>
+      <File FileName="BookStoreManager.Api/Controllers/AuthenticationController.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="BookStoreManager" expanded="True">
+            <Node name="BookStoreManager.Api" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="AuthenticationController.cs" selected="True" />
+              </Node>
+            </Node>
+            <Node name="BookStoreManager.Domain" expanded="True">
+              <Node name="Entities" expanded="True" />
+            </Node>
+            <Node name="BookStoreManager.Service" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+</Properties>

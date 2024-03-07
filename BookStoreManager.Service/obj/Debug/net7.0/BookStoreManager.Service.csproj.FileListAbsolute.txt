@@ -1,0 +1,17 @@
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Service/bin/Debug/net7.0/BookStoreManager.Service.deps.json
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Service/bin/Debug/net7.0/BookStoreManager.Service.dll
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Service/bin/Debug/net7.0/BookStoreManager.Service.pdb
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Service/bin/Debug/net7.0/BookStoreManager.Data.dll
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Service/bin/Debug/net7.0/BookStoreManager.Domain.dll
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Service/bin/Debug/net7.0/BookStoreManager.Data.pdb
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Service/bin/Debug/net7.0/BookStoreManager.Domain.pdb
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Service/obj/Debug/net7.0/BookStoreManager.Service.csproj.AssemblyReference.cache
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Service/obj/Debug/net7.0/BookStoreManager.Service.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Service/obj/Debug/net7.0/BookStoreManager.Service.AssemblyInfoInputs.cache
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Service/obj/Debug/net7.0/BookStoreManager.Service.AssemblyInfo.cs
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Service/obj/Debug/net7.0/BookStoreManager.Service.csproj.CoreCompileInputs.cache
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Service/obj/Debug/net7.0/BookStoreManager.Service.csproj.CopyComplete
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Service/obj/Debug/net7.0/BookStoreManager.Service.dll
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Service/obj/Debug/net7.0/refint/BookStoreManager.Service.dll
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Service/obj/Debug/net7.0/BookStoreManager.Service.pdb
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Service/obj/Debug/net7.0/ref/BookStoreManager.Service.dll
