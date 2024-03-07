@@ -15,3 +15,4 @@
 /Users/mac/Projects/BookStoreManager/BookStoreManager.Data/obj/Debug/net6.0/BookStoreManager.Data.pdb
 /Users/mac/Projects/BookStoreManager/BookStoreManager.Data/obj/Debug/net6.0/BookStoreManager.Data.genruntimeconfig.cache
 /Users/mac/Projects/BookStoreManager/BookStoreManager.Data/obj/Debug/net6.0/ref/BookStoreManager.Data.dll
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Data/obj/Debug/net6.0/BookStoreManager.Data.sourcelink.json

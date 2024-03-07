@@ -93,3 +93,4 @@
 /Users/mac/Projects/BookStoreManager/BookStoreManager.Api/bin/Debug/net6.0/StackExchange.Redis.StrongName.dll
 /Users/mac/Projects/BookStoreManager/BookStoreManager.Api/bin/Debug/net6.0/System.Diagnostics.PerformanceCounter.dll
 /Users/mac/Projects/BookStoreManager/BookStoreManager.Api/bin/Debug/net6.0/runtimes/win/lib/netcoreapp2.0/System.Diagnostics.PerformanceCounter.dll
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Api/obj/Debug/net6.0/BookStoreManager.Api.sourcelink.json

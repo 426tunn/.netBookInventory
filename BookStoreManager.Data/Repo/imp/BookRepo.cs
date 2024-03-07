@@ -6,6 +6,7 @@ using AutoMapper;
 using BookStoreManager.Data.Repo.intt;
 using BookStoreManager.Domain.DTOs;
 
+
 // using BookStoreManager.Domain.DTO;
 using BookStoreManager.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +16,7 @@ namespace BookStoreManager.Data.Repo.imp
     public class BookRepo : IBookRepo
     {
        private readonly AppDbContext _context;
-       private readonly IMapper _mapper;
+              private readonly IMapper _mapper;
        
         protected readonly DbSet<Book> _dbSet;
 
@@ -56,15 +57,21 @@ namespace BookStoreManager.Data.Repo.imp
 
         public async Task<Book> GetByIdAsync(Guid id)
         {
-           var fBook =  await _dbSet.FindAsync(id);
+           var fBook =  _context.Books;
            if (fBook != null)
            {
-             return fBook;
-           
-           } else {
-                 throw new Exception("Book not found");
-       }
+             var book = await fBook
+             .Where(b => b.Id == id)
+             .FirstOrDefaultAsync();
+             if (book != null){
+                 return book;  
+             }
+             throw new Exception("1.Book not found");       
+           }
+            throw new Exception("2. Book not found");
+
         }
+
 
         public async Task UpdateAsync(Guid id, Book book)
         {
@@ -86,6 +93,25 @@ namespace BookStoreManager.Data.Repo.imp
                 await _context.SaveChangesAsync();
             }
         }
- 
+
+        public async Task<IEnumerable<Book>> GetBooksByAuthorAsync(Guid AuthorId)
+        {
+            var FindAuthor = _context.Authors;
+         
+            if (FindAuthor != null)
+            {          
+            var getAuthors = await FindAuthor
+                .Include(a => a.Books)
+             .FirstOrDefaultAsync(a => a.Id == AuthorId);  
+            if (getAuthors == null)
+            {
+                throw new NotFoundException($"Author with id {AuthorId} is not found");
+            }
+             return getAuthors.Books ?? Enumerable.Empty<Book>();
+
+            }
+              throw new NotFoundException("Book not found");
+            
+        }
     }
 }

@@ -15,3 +15,4 @@
 /Users/mac/Projects/BookStoreManager/BookStoreManager.Service/obj/Debug/net6.0/refint/BookStoreManager.Service.dll
 /Users/mac/Projects/BookStoreManager/BookStoreManager.Service/obj/Debug/net6.0/BookStoreManager.Service.pdb
 /Users/mac/Projects/BookStoreManager/BookStoreManager.Service/obj/Debug/net6.0/ref/BookStoreManager.Service.dll
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Service/obj/Debug/net6.0/BookStoreManager.Service.sourcelink.json

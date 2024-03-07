@@ -95,5 +95,9 @@ namespace BookStoreManager.Service.Service.Implementation
         
         }
 
+        public Task<IEnumerable<Book>> GetBooksByAuthorAsync(Guid AuthorId)
+        {
+            return _bookRepository.GetBooksByAuthorAsync(AuthorId);
+        }
     }
 }

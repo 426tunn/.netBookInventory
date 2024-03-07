@@ -5,6 +5,9 @@ using BookStoreManager.Service.Authentication.Interface;
 using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using BookStoreManager.Domain.DTOs;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using BookStoreManager.Data;
 
 namespace BookStoreManager.API.Controllers
 {
@@ -61,8 +64,28 @@ namespace BookStoreManager.API.Controllers
         [HttpGet("{authorId}")]
         public async Task<ActionResult> GetAuthor(Guid authorId)
         {
-            var author = await _authenticationservice.GetAuthor(authorId);
-            return Ok(author);
+            try {
+                var author = await _authenticationservice.GetAuthor(authorId);
+                 if (author == null)
+                {
+                    return NotFound($"Author with id {authorId} is not found");
+                }
+                 var options = new JsonSerializerOptions
+                 {
+                    ReferenceHandler = ReferenceHandler.Preserve
+                 };
+                 return Ok(JsonSerializer.Serialize(author, options));
+            } catch(NotFoundException ex)
+            {
+                throw new NotFoundException(ex.Message);
+            } 
+                catch (Exception ex)
+                {
+                    // throw new NotFoundException(ex.Message);
+                    // Log the exception or handle it as needed
+                    return StatusCode(StatusCodes.Status500InternalServerError, "An unexpected error occurred");
+                }
+          
         }
 
 

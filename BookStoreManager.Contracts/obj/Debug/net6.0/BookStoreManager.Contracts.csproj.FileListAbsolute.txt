@@ -9,3 +9,4 @@
 /Users/mac/Projects/BookStoreManager/BookStoreManager.Contracts/obj/Debug/net6.0/refint/BookStoreManager.Contracts.dll
 /Users/mac/Projects/BookStoreManager/BookStoreManager.Contracts/obj/Debug/net6.0/BookStoreManager.Contracts.pdb
 /Users/mac/Projects/BookStoreManager/BookStoreManager.Contracts/obj/Debug/net6.0/ref/BookStoreManager.Contracts.dll
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Contracts/obj/Debug/net6.0/BookStoreManager.Contracts.sourcelink.json

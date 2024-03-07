@@ -10,3 +10,4 @@
 /Users/mac/Projects/BookStoreManager/BookStoreManager.Domain/obj/Debug/net6.0/refint/BookStoreManager.Domain.dll
 /Users/mac/Projects/BookStoreManager/BookStoreManager.Domain/obj/Debug/net6.0/BookStoreManager.Domain.pdb
 /Users/mac/Projects/BookStoreManager/BookStoreManager.Domain/obj/Debug/net6.0/ref/BookStoreManager.Domain.dll
+/Users/mac/Projects/BookStoreManager/BookStoreManager.Domain/obj/Debug/net6.0/BookStoreManager.Domain.sourcelink.json

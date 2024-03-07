@@ -10,6 +10,7 @@ namespace BookStoreManager.Data.Repo.intt
     public interface IBookRepo
     {
          Task<IEnumerable<Book>> GetAllAsync();
+         Task<IEnumerable<Book>> GetBooksByAuthorAsync(Guid AuthorId);
         Task<Book> GetByIdAsync(Guid id);
         Task AddAsync(BookDTO book);
         Task UpdateAsync(Guid id, Book book);

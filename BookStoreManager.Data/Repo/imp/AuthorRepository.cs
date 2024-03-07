@@ -45,7 +45,8 @@ namespace BookStoreManager.Data.Repo.imp
             if (authors != null)
             {
 
-            var existingAuthor = await authors.FirstOrDefaultAsync(a => a.Email == email);
+            var existingAuthor = await authors
+            .FirstOrDefaultAsync(a => a.Email == email);
                 return existingAuthor;
             }
             return null;
@@ -56,8 +57,12 @@ namespace BookStoreManager.Data.Repo.imp
              if (author != null)
              {
                  var authorWithBooks = await author
-            //    .Include(a => a.Books)
+               .Include(a => a.Books)
              .FirstOrDefaultAsync(a => a.Id == id);
+             if (authorWithBooks == null)
+             {
+                throw new NotFoundException($"Author with id {id} is not found");
+             }
                  return authorWithBooks;
              }
             return null;

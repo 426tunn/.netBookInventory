@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BookStoreManager.Domain\BookStoreManager.Domain.csproj" />
+     <!-- <ProjectReference Include="..\BookStoreManager.Api\BookStoreManager.Api.csproj" /> -->
   </ItemGroup>
 
   <ItemGroup>

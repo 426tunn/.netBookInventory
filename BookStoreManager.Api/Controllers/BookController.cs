@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using BookStoreManager.Data;
 using BookStoreManager.Domain.DTOs;
 
 // using BookStoreManager.Domain.DTO;
@@ -37,6 +40,24 @@ namespace BookStoreManager.Api.Controllers
         {
             var books = await _bookService.GetAllAsync();
             return Ok(books);
+        }
+
+        [HttpGet("author/{authorId}")]
+        public async Task<IActionResult> GetBooksByAuthorId(Guid authorId)
+        {
+            try {
+                var books = await _bookService.GetBooksByAuthorAsync(authorId);
+                        var options = new JsonSerializerOptions
+        {
+            ReferenceHandler = ReferenceHandler.Preserve
+        };
+               return Ok(JsonSerializer.Serialize(books, options));
+            } catch (NotFoundException ex){
+                return NotFound(ex.Message);
+            } catch (Exception ex) {
+                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+            
         }
 
       [HttpGet("{bookId}")]
