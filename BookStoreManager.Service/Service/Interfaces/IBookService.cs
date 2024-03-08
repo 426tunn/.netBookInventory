@@ -13,7 +13,7 @@ namespace BookStoreManager.Service.Service.Interface
         Task<Book> GetByIdAsync(Guid id);
         Task<IEnumerable<Book>> GetBooksByAuthorAsync(Guid AuthorId);
         Task AddAsync(BookDTO book);
-        Task UpdateAsync(Guid id, Book book);
+        Task UpdateAsync(Guid BookId, BookDTO book);
         Task DeleteAsync(Guid id);
     }
 }

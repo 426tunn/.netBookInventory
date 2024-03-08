@@ -13,8 +13,8 @@ namespace BookStoreManager.Data.Repo.intt
          Task<IEnumerable<Book>> GetBooksByAuthorAsync(Guid AuthorId);
         Task<Book> GetByIdAsync(Guid id);
         Task AddAsync(BookDTO book);
-        Task UpdateAsync(Guid id, Book book);
-        Task DeleteAsync(Guid id);
+        Task UpdateAsync(Guid BookId, Book book);
+        Task DeleteAsync(Guid BookId);
         Task SaveChangesAsync();
     }
 }

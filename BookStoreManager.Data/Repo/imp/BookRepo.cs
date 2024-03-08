@@ -16,7 +16,7 @@ namespace BookStoreManager.Data.Repo.imp
     public class BookRepo : IBookRepo
     {
        private readonly AppDbContext _context;
-              private readonly IMapper _mapper;
+       private readonly IMapper _mapper;
        
         protected readonly DbSet<Book> _dbSet;
 
@@ -73,9 +73,9 @@ namespace BookStoreManager.Data.Repo.imp
         }
 
 
-        public async Task UpdateAsync(Guid id, Book book)
+        public async Task UpdateAsync(Guid BookId, Book book)
         {
-            var filter = await _dbSet.FindAsync(id);
+            var filter = await _dbSet.FindAsync(BookId);
             if (filter != null)
             {
                 _context.Entry(filter).CurrentValues.SetValues(book);
@@ -84,14 +84,21 @@ namespace BookStoreManager.Data.Repo.imp
         
         }
 
-            public async Task DeleteAsync(Guid id)
+            public async Task DeleteAsync(Guid BookId)
         {
-            var filter = await _dbSet.FindAsync(id);
-               if (filter != null)
+            // var AuthIdString =_httpContextAccessor.HttpContext?.Session.GetString("AuthorId");
+            var findBook = _context.Books;
+               if (findBook != null)
+            { 
+               var book = await findBook.FirstOrDefaultAsync(a => a.Id == BookId);
+            if (book == null)
             {
-                _dbSet.Remove(filter);
+                throw new Exception("Author does not exist");
+            }
+                _context.Books?.Remove(book);
                 await _context.SaveChangesAsync();
             }
+             throw new Exception("Context is null");
         }
 
         public async Task<IEnumerable<Book>> GetBooksByAuthorAsync(Guid AuthorId)

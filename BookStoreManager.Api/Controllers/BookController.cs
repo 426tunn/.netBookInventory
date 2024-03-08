@@ -52,7 +52,7 @@ namespace BookStoreManager.Api.Controllers
         }
 
         [HttpPut("{bookId}")]
-        public async Task<ActionResult> UpdateBook(Guid bookId, [FromBody] Book updatedBook)
+        public async Task<ActionResult> UpdateBook(Guid bookId, [FromBody] BookDTO updatedBook)
         {
 
             try{
@@ -61,7 +61,7 @@ namespace BookStoreManager.Api.Controllers
 
             } catch(Exception ex)
             {
-                throw new Exception("Error updating book", ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating book: " + ex.Message);
             }
         }
 
