@@ -93,7 +93,7 @@ namespace BookStoreManager.Data.Repo.imp
                var book = await findBook.FirstOrDefaultAsync(a => a.Id == BookId);
             if (book == null)
             {
-                throw new Exception("Author does not exist");
+                throw new Exception("Book does not exist");
             }
                 _context.Books?.Remove(book);
                 await _context.SaveChangesAsync();

@@ -94,15 +94,6 @@ namespace BookStoreManager.Service.Service.Implementation
                     var updatedBook = _mapper.Map<Book>(UpdatedBook);
                     updatedBook.Id = BookId;
 
-                        // var bookDTO = new BookDTO
-                        // {
-                        //     Title = existingBook.Title,
-                        //     AuthorId =  existingBook.AuthorId,
-                        //     Price =  existingBook.Price,
-                        //     Quantities =  existingBook.Quantities,
-                        //     Year =  existingBook.Year,
-                        //     Description =  existingBook.Description
-                        // };
                 await _bookRepository.UpdateAsync(BookId, updatedBook);
 
 
@@ -145,7 +136,7 @@ namespace BookStoreManager.Service.Service.Implementation
             
                 await _bookRepository.DeleteAsync(id);
                 await _bookRepository.SaveChangesAsync();
-                return;
+                return ;
             
             
         }

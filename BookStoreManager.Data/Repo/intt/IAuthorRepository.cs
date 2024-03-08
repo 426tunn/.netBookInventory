@@ -13,6 +13,7 @@ namespace BookStoreManager.Data.Repo.intt
          Task<Author?>  GetAuthor(string email);
          Task<string> CreateAuthor( AuthorDTO author);
          Task<Author?> GetAuthorById(Guid id);
-         Task DeleteAuthor(Guid id);    
+         Task DeleteAuthor(Guid id); 
+         Task SaveChangesAsync();   
     }
 }

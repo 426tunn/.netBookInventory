@@ -30,7 +30,7 @@ namespace BookStoreManager.API.Controllers
            [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody]AuthorDTO author)
         {
-            await _authenticationservice.Register(author/*author.Id, author.Firstname, author.Lastname, author.Email, author.Password*/);
+            await _authenticationservice.Register(author);
             return Ok(
             " Author created successfully");
         }

@@ -73,7 +73,7 @@ namespace BookStoreManager.Api.Controllers
                await _bookService.DeleteAsync(bookId);
             return Ok("Book Deleted successfully");
             } catch(Exception ex) {
-                throw new Exception("Error deleting book", ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating book: " + ex.Message);
             }
             
         }        

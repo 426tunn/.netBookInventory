@@ -38,6 +38,7 @@ namespace BookStoreManager.Service.Authentication.Implementation
             }
 
             await _authorRepository.DeleteAuthor(Id);
+             await _authorRepository.SaveChangesAsync();
             return "Author deleted successfully";
 
            } catch(Exception ex) {
