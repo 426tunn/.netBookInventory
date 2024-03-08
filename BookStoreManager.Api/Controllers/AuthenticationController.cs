@@ -8,6 +8,7 @@ using BookStoreManager.Domain.DTOs;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using BookStoreManager.Data;
+using BookStoreManager.Service.Service.Interface;
 
 namespace BookStoreManager.API.Controllers
 {
@@ -17,10 +18,12 @@ namespace BookStoreManager.API.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly IAuthenticationService _authenticationservice;
+        private readonly IBookService _bookService;
 
-        public AuthenticationController(IAuthenticationService authenticationservice)
+        public AuthenticationController(IAuthenticationService authenticationservice, IBookService bookService)
         {
             _authenticationservice = authenticationservice;
+            _bookService = bookService;
         }
 
 
@@ -88,14 +91,35 @@ namespace BookStoreManager.API.Controllers
           
         }
 
+        [HttpGet("books/{authorId}")]
+        public async Task<IActionResult> GetBooksByAuthorId(Guid authorId)
+        {
+            try {
+                var books = await _bookService.GetBooksByAuthorAsync(authorId);
+                        var options = new JsonSerializerOptions
+        {
+            ReferenceHandler = ReferenceHandler.Preserve
+        };
+               return Ok(JsonSerializer.Serialize(books, options));
+            } catch (NotFoundException ex){
+                return NotFound(ex.Message);
+            } catch (Exception ex) {
+                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+            
+        }
+
 
         [HttpDelete("{authorId}")]
         public async Task<ActionResult> DeleteBook(Guid authorId)
         {
-            try{
-            await _authenticationservice.DeleteAuthor(authorId);
-            return Ok("Book Deleted successfully");
-            } catch(Exception ex) {
+            try
+            {
+                 var result =await _authenticationservice.DeleteAuthor(authorId);
+                 return Ok(result);
+            } 
+            catch(Exception ex)
+            {
                 throw new Exception("Error deleting book", ex);
             }
             

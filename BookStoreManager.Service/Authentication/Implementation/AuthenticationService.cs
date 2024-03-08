@@ -28,17 +28,17 @@ namespace BookStoreManager.Service.Authentication.Implementation
 
         }
 
-        public Task<string> DeleteAuthor(Guid Id)
+        public async Task<string> DeleteAuthor(Guid Id)
         {
            try {
-            var authorExists = _authorRepository.GetAuthorById(Id);
+            var authorExists = await _authorRepository.GetAuthorById(Id);
             if (authorExists == null)
             {
                 throw new Exception("Author does not exist");
             }
 
-            _authorRepository.DeleteAuthor(Id);
-            return Task.FromResult("Author deleted successfully");
+            await _authorRepository.DeleteAuthor(Id);
+            return "Author deleted successfully";
 
            } catch(Exception ex) {
             throw new Exception(ex.Message);

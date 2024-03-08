@@ -80,7 +80,7 @@ namespace BookStoreManager.Data.Repo.imp
             {
                 throw new Exception("Author does not exist");
             }
-           authorExists.Remove(existingAuthor);
+           _context.Authors?.Remove(existingAuthor);
             await _context.SaveChangesAsync();
         }
     }

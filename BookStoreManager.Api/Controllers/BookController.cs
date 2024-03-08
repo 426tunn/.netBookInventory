@@ -42,23 +42,7 @@ namespace BookStoreManager.Api.Controllers
             return Ok(books);
         }
 
-        [HttpGet("author/{authorId}")]
-        public async Task<IActionResult> GetBooksByAuthorId(Guid authorId)
-        {
-            try {
-                var books = await _bookService.GetBooksByAuthorAsync(authorId);
-                        var options = new JsonSerializerOptions
-        {
-            ReferenceHandler = ReferenceHandler.Preserve
-        };
-               return Ok(JsonSerializer.Serialize(books, options));
-            } catch (NotFoundException ex){
-                return NotFound(ex.Message);
-            } catch (Exception ex) {
-                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-            }
-            
-        }
+
 
       [HttpGet("{bookId}")]
         public async Task<ActionResult> GetBookById(Guid bookId)
@@ -84,8 +68,9 @@ namespace BookStoreManager.Api.Controllers
         [HttpDelete("{bookId}")]
         public async Task<ActionResult> DeleteBook(Guid bookId)
         {
-            try{
-            await _bookService.DeleteAsync(bookId);
+            try
+            {
+               await _bookService.DeleteAsync(bookId);
             return Ok("Book Deleted successfully");
             } catch(Exception ex) {
                 throw new Exception("Error deleting book", ex);
