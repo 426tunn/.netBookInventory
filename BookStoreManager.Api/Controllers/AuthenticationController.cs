@@ -56,7 +56,11 @@ namespace BookStoreManager.API.Controllers
         {
             try{
                  var authors = await _authenticationservice.GetAllAsync();
-                 return Ok(authors);
+                 var options = new JsonSerializerOptions
+                 {
+                    ReferenceHandler = ReferenceHandler.Preserve
+                 };
+                 return Ok(JsonSerializer.Serialize(authors, options));
             } catch(Exception ex)
             {
                 throw new Exception(ex.Message);

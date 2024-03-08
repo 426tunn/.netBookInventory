@@ -36,7 +36,20 @@ namespace BookStoreManager.Data.Repo.imp
 
         public async Task<IEnumerable<Author>> GetAllAsync()
         {
-            return await _dbSet.ToListAsync();
+            var Authors =  _context.Authors;
+            if (Authors != null)
+            {
+                var getAuthors = await Authors
+                .Include(a => a.Books)
+                .ToListAsync();
+                if(getAuthors == null)
+                {
+                   throw new NotFoundException("Authors not found");
+                }
+                return getAuthors;
+            }
+            throw new NotFoundException("Authors not found");
+           
         }
 
         public async Task<Author?> GetAuthor(string email)
