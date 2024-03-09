@@ -38,6 +38,10 @@ namespace BookStoreManager.Services
                 (Encoding.UTF8.GetBytes(JwtSettings.Secrets))
 
             });
+            services.AddAuthorization(options => 
+            {
+                options.AddPolicy("AdminOnly", policy => policy.RequireRole("Role", "Admin"));
+            });
 
             services.AddStackExchangeRedisCache(options =>
             {

@@ -128,6 +128,7 @@ namespace BookStoreManager.API.Controllers
         }
 
 
+         [Authorize(Roles = "Admin")]
         [HttpDelete("{authorId}")]
         public async Task<ActionResult> DeleteBook(Guid authorId)
         {

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BookStoreManager.Domain.Enum;
 
 namespace BookStoreManager.Domain.Entities
 {
@@ -13,6 +14,7 @@ namespace BookStoreManager.Domain.Entities
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
         public ICollection<Book>? Books { get; set; }
+        public UserRole  Role { get; set; }
     
         //NEED TO DO MIGRATION FOR THE NEW FOREIGN KEY
     }
