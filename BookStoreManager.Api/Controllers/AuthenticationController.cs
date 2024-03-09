@@ -19,11 +19,13 @@ namespace BookStoreManager.API.Controllers
     {
         private readonly IAuthenticationService _authenticationservice;
         private readonly IBookService _bookService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AuthenticationController(IAuthenticationService authenticationservice, IBookService bookService)
+        public AuthenticationController(IAuthenticationService authenticationservice, IBookService bookService, IHttpContextAccessor httpContextAccessor)
         {
             _authenticationservice = authenticationservice;
             _bookService = bookService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
 
@@ -49,6 +51,18 @@ namespace BookStoreManager.API.Controllers
              }
           
         }
+
+        // [HttpPost("logout")]
+        // public async Task<IActionResult> Logout()
+        // {
+        //     // Clear session or token data
+        //     _httpContextAccessor.HttpContext?.Session.Clear();
+            
+        //     // Or remove JWT token if using JWT
+
+        //     return Ok("Logout successful");
+        // }
+
 
 
         [HttpGet]
@@ -90,7 +104,7 @@ namespace BookStoreManager.API.Controllers
                 {
                     // throw new NotFoundException(ex.Message);
                     // Log the exception or handle it as needed
-                    return StatusCode(StatusCodes.Status500InternalServerError, "An unexpected error occurred");
+                    return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
                 }
           
         }
