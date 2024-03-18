@@ -38,6 +38,18 @@ namespace BookStoreManager.Services
                 (Encoding.UTF8.GetBytes(JwtSettings.Secrets))
 
             });
+
+
+            
+
+            //Test UserRole
+
+
+
+
+
+
+
             services.AddAuthorization(options => 
             {
                 options.AddPolicy("AdminOnly", policy => policy.RequireRole("Role", "Admin"));

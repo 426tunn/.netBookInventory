@@ -1,4 +1,9 @@
 # Compiled output
 bin/
 obj/
+obj/
+bin/
+.bin/
+.obj/
 #CHECK UPDATE DELETE ENDPOINT
+BookStoreManager.Api.dll

@@ -16,6 +16,6 @@ namespace BookStoreManager.Domain.Entities
         public ICollection<Book>? Books { get; set; }
         public UserRole  Role { get; set; }
     
-        //NEED TO DO MIGRATION FOR THE NEW FOREIGN KEY
+        
     }
 }
