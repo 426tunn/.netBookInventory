@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BookStoreManager.Domain.DTOs;
 using BookStoreManager.Domain.Entities;
+using BookStoreManager.Domain.Enum;
 
 namespace BookStoreManager.Data.Repo.intt
 {
@@ -14,6 +15,7 @@ namespace BookStoreManager.Data.Repo.intt
          Task<string> CreateAuthor( AuthorDTO author);
          Task<Author?> GetAuthorById(Guid id);
          Task DeleteAuthor(Guid id); 
+         Task<string> UpdateUserRole(Guid id, UserRole newRole);
          Task SaveChangesAsync();   
     }
 }

@@ -1,9 +1,12 @@
-# Compiled output
-bin/
-obj/
-obj/
-bin/
-.bin/
-.obj/
-#CHECK UPDATE DELETE ENDPOINT
-BookStoreManager.Api.dll
+BookStoreManager.Data/obj/
+BookStoreManager.Data/bin/
+BookStoreManager.Domain/obj/
+BookStoreManager.Domain/bin/
+BookStoreManager.Api/obj/
+BookStoreManager.Api/bin/
+BookStoreManager.Service/obj/
+BookStoreManager.Service/bin/
+BookStoreManager.Contracts/obj/
+BookStoreManager.Contracts/bin/
+BookStoreManager.Api/appsettings.json
+BookStoreManager.Api/appsettings.Development.json

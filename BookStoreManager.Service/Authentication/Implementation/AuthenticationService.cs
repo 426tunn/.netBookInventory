@@ -7,6 +7,7 @@ using BookStoreManager.Contracts.Authentication;
 using BookStoreManager.Data.Repo.intt;
 using BookStoreManager.Domain.DTOs;
 using BookStoreManager.Domain.Entities;
+using BookStoreManager.Domain.Enum;
 using BookStoreManager.Service.Authentication.Interface;
 using Microsoft.AspNetCore.Http;
 
@@ -113,6 +114,26 @@ namespace BookStoreManager.Service.Authentication.Implementation
             // var Token = _jwtTokenGenerator.GeneratedToken(author.Id, Firstname, Lastname);
             return "registration successful";
            
+        }
+        public async Task<string> UpdateUserRole(Guid id, UserRole newRole)
+        {
+
+            try
+            {
+             var findUser = await _authorRepository.GetAuthorById(id);
+            if (findUser == null)
+            {
+                throw new Exception("User not found");
+            }
+            var newUserRole = _authorRepository.UpdateUserRole(id, newRole);
+            return "User role updated successfully";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+      
+
         }
     }
 }

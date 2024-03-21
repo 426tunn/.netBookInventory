@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BookStoreManager.Domain.DTOs;
 using BookStoreManager.Domain.Entities;
+using BookStoreManager.Domain.Enum;
 
 namespace BookStoreManager.Data.Mapper
 {
@@ -33,13 +34,15 @@ namespace BookStoreManager.Data.Mapper
         .ForMember(dest => dest.Firstname, opt => opt.MapFrom(src => src.Firstname))
         .ForMember(dest => dest.Lastname, opt => opt.MapFrom(src => src.Lastname))
         .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
-        .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password));
+        .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password))
+        .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role));
 
          CreateMap<AuthorDTO, Author>()
         .ForMember(dest => dest.Firstname, opt => opt.MapFrom(src => src.Firstname))
         .ForMember(dest => dest.Lastname, opt => opt.MapFrom(src => src.Lastname))
         .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
-        .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password));
+        .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password))
+        .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role ?? UserRole.User));
     }
 
     }

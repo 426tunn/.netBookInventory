@@ -14,8 +14,7 @@ namespace BookStoreManager.Domain.Entities
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
         public ICollection<Book>? Books { get; set; }
-        public UserRole  Role { get; set; }
-    
+        public UserRole  Role { get; set; } 
         
     }
 }

@@ -9,6 +9,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using BookStoreManager.Data;
 using BookStoreManager.Service.Service.Interface;
+using BookStoreManager.Domain.Enum;
 
 namespace BookStoreManager.API.Controllers
 {
@@ -32,9 +33,9 @@ namespace BookStoreManager.API.Controllers
            [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody]AuthorDTO author)
         {
+                var options = new JsonSerializerOptions();
             await _authenticationservice.Register(author);
-            return Ok(
-            " Author created successfully");
+            return Ok(JsonSerializer.Serialize(author, options));
         }
 
          [HttpPost("login")]
@@ -63,6 +64,24 @@ namespace BookStoreManager.API.Controllers
         //     return Ok("Logout successful");
         // }
 
+        [HttpPut("{authorId}")]
+        public async Task<IActionResult>UpdateUserRole(Guid authorId, [FromBody] UserRole newRole)
+        {
+            try
+            {
+                var message = "User role updated successfully";
+                var result = await _authenticationservice.UpdateUserRole(authorId, newRole);
+                if (result == "User not found"){
+                    return NotFound(result);
+                }
+                return new OkObjectResult(new { Result = result, Message = message });
+            }
+            catch (Exception ex)
+            {
+                
+                throw new Exception(ex.Message);
+            }
+        }
 
 
         [HttpGet]
@@ -128,7 +147,8 @@ namespace BookStoreManager.API.Controllers
         }
 
 
-         [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "AdminOnly")]
         [HttpDelete("{authorId}")]
         public async Task<ActionResult> DeleteBook(Guid authorId)
         {

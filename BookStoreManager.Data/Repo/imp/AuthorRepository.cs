@@ -7,6 +7,7 @@ using BookStoreManager.Data;
 using BookStoreManager.Data.Repo.intt;
 using BookStoreManager.Domain.DTOs;
 using BookStoreManager.Domain.Entities;
+using BookStoreManager.Domain.Enum;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStoreManager.Data.Repo.imp
@@ -103,5 +104,22 @@ namespace BookStoreManager.Data.Repo.imp
                 await _context.SaveChangesAsync();
             }
 
+        public async Task<string> UpdateUserRole(Guid id, UserRole newRole)
+        {
+             var authorExists =  _context.Authors;
+            if (authorExists == null)
+            {
+                throw new Exception("Context is null");
+            }
+
+            var existingAuthor =  authorExists.FirstOrDefault(a => a.Id == id);
+            if (existingAuthor == null)
+            {
+                throw new Exception("Author does not exist");
+            }
+            existingAuthor.Role = newRole;
+            await _context.SaveChangesAsync();
+            return "Author role updated successfully";
+        }
     }
 }
