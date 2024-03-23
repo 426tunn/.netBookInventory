@@ -30,19 +30,19 @@ namespace BookStoreManager.Data.Mapper
         .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description));
 
 
-         CreateMap<Author, AuthorDTO>()
-        .ForMember(dest => dest.Firstname, opt => opt.MapFrom(src => src.Firstname))
-        .ForMember(dest => dest.Lastname, opt => opt.MapFrom(src => src.Lastname))
-        .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
-        .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password))
-        .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role));
+CreateMap<Author, AuthorDTO>()
+    .ForMember(dest => dest.Firstname, opt => opt.MapFrom(src => src.Firstname))
+    .ForMember(dest => dest.Lastname, opt => opt.MapFrom(src => src.Lastname))
+    .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
+    .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password))
+    .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role));
 
-         CreateMap<AuthorDTO, Author>()
-        .ForMember(dest => dest.Firstname, opt => opt.MapFrom(src => src.Firstname))
-        .ForMember(dest => dest.Lastname, opt => opt.MapFrom(src => src.Lastname))
-        .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
-        .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password))
-        .ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role ?? UserRole.User));
+CreateMap<AuthorDTO, Author>()
+    .ForMember(dest => dest.Firstname, opt => opt.MapFrom(src => src.Firstname))
+    .ForMember(dest => dest.Lastname, opt => opt.MapFrom(src => src.Lastname))
+    .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
+    .ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password))
+    .ForMember(dest => dest.Role, opt => opt.MapFrom(src => string.IsNullOrEmpty(src.Role) ? "User" : src.Role));
     }
 
     }
