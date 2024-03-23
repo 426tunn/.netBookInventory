@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using BookStoreManager.Domain.Enum;
@@ -12,6 +13,7 @@ namespace BookStoreManager.Domain.DTOs
         public string Lastname { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
-        public UserRole? Role { get; set; }
+        [RegularExpression("^(Admin|User|SuperAdmin)$", ErrorMessage = "Role must be either 'Admin' or 'User'.")]
+        public string? Role { get; set; }
     }
 }
