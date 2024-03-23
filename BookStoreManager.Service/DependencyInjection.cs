@@ -39,13 +39,17 @@ namespace BookStoreManager.Services
 
             });
 
-//policy for admin authorization
-            services.AddAuthorization(options => 
+        //policy for admin authorization
+            services.AddAuthorization(options =>
             {
-                options.AddPolicy("AdminOnly", policy =>
-                 {
-                    policy.RequireRole("Admin");
-                 });
+                options.AddPolicy("Admin", policy =>
+                    policy.RequireRole("Admin"));
+
+                options.AddPolicy("SuperAdmin", policy =>
+                    policy.RequireRole("SuperAdmin"));
+
+                options.AddPolicy("AdminOrSuperAdmin", policy =>
+                    policy.RequireRole("Admin", "SuperAdmin"));
             });
 
             services.AddStackExchangeRedisCache(options =>
