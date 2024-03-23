@@ -35,7 +35,7 @@ namespace BookStoreManager.Data.Repo.imp
            return "Author created successfully";
      }
 
-        public async Task<IEnumerable<Author>> GetAllAsync()
+    public async Task<IEnumerable<Author>> GetAllAsync()
         {
             var Authors =  _context.Authors;
             if (Authors != null)
@@ -53,7 +53,7 @@ namespace BookStoreManager.Data.Repo.imp
            
         }
 
-        public async Task<Author?> GetAuthor(string email)
+    public async Task<Author?> GetAuthor(string email)
         {
             var authors = _context.Authors;
             if (authors != null)
@@ -65,7 +65,7 @@ namespace BookStoreManager.Data.Repo.imp
             }
             return null;
         }
-        public async Task<Author?> GetAuthorById(Guid id)
+    public async Task<Author?> GetAuthorById(Guid id)
         {
              var author = _context.Authors;
              if (author != null)
@@ -81,7 +81,7 @@ namespace BookStoreManager.Data.Repo.imp
              }
             return null;
         }
-        public async Task DeleteAuthor(Guid id)
+    public async Task DeleteAuthor(Guid id)
         {
              var authorExists = _context.Authors;
             if (authorExists == null)
@@ -99,12 +99,12 @@ namespace BookStoreManager.Data.Repo.imp
         }
 
 
-           public async Task SaveChangesAsync()
+    public async Task SaveChangesAsync()
             {
                 await _context.SaveChangesAsync();
             }
 
-        public async Task<string> UpdateUserRole(Guid id, UserRole newRole)
+    public async Task<string> UpdateUserRole(Guid id, string newRole)
         {
              var authorExists =  _context.Authors;
             if (authorExists == null)
@@ -120,6 +120,22 @@ namespace BookStoreManager.Data.Repo.imp
             existingAuthor.Role = newRole;
             await _context.SaveChangesAsync();
             return "Author role updated successfully";
+        }
+
+        public Task<string> GetUserRole(Guid id)
+        {
+              var authorExists =  _context.Authors;
+            if (authorExists == null)
+            {
+                throw new Exception("Context is null");
+            }
+
+            var existingAuthor =  authorExists.FirstOrDefault(a => a.Id == id);
+            if (existingAuthor == null)
+            {
+                throw new Exception("Author does not exist");
+            }      
+            return Task.FromResult(existingAuthor.Role ?? string.Empty);  
         }
     }
 }
