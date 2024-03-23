@@ -17,20 +17,22 @@ namespace BookStoreManager.Service.Authentication.Implementation
             _JwtSettings = jwtSettings.Value;
         }
 
-        public string GeneratedToken(Guid userId, string firstname, string lastname)
+        public string GeneratedToken(Guid userId, string firstname, string lastname, string role)
         {
             SigningCredentials signingCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(
                     Encoding.UTF8.GetBytes(_JwtSettings.Secrets)),
                 SecurityAlgorithms.HmacSha256
             );
-            var claims = new[]
+            var claims = new List<Claim> /**/
             {
                 new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
                 new Claim(JwtRegisteredClaimNames.GivenName, firstname),
                 new Claim(JwtRegisteredClaimNames.FamilyName, lastname),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.Role, role)
             };
+            
             var securityToken = new JwtSecurityToken(
                 issuer: _JwtSettings.Issuer,
                 audience: _JwtSettings.Audience,

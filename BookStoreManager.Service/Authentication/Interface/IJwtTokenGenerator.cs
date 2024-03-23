@@ -7,7 +7,7 @@ namespace BookStoreManager.Service.Authentication.Interface
 {
     public interface IJwtTokenGenerator
     {
-         string GeneratedToken(Guid userId, string firstname, string lastname);
+         string GeneratedToken(Guid userId, string firstname, string lastname, string role);
          
     }
 }
