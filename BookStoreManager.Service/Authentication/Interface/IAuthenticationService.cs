@@ -15,7 +15,7 @@ namespace BookStoreManager.Service.Authentication.Interface
         Task<string> Register(AuthorDTO author);
         Task<IEnumerable<Author>> GetAllAsync();
         Task<Author?> GetAuthor(Guid Id);
-        Task<string> UpdateUserRole(Guid Id, UserRole newRole);
+        Task<string> UpdateUserRole(Guid Id, string newRole);
         Task<string> DeleteAuthor(Guid Id);
     }
 }

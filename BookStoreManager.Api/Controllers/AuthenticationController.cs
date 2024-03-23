@@ -14,7 +14,6 @@ using BookStoreManager.Domain.Enum;
 namespace BookStoreManager.API.Controllers
 {
     [ApiController]
-    [AllowAnonymous]
     [Route("author")]
     public class AuthenticationController : ControllerBase
     {
@@ -63,12 +62,12 @@ namespace BookStoreManager.API.Controllers
 
         //     return Ok("Logout successful");
         // }
-
-        [HttpPut("{authorId}")]
-        public async Task<IActionResult>UpdateUserRole(Guid authorId, [FromBody] UserRole newRole)
+     
+        [HttpPut("role/{authorId}")]
+        public async Task<IActionResult>UpdateUserRole(Guid authorId, [FromBody] string newRole)
         {
             try
-            {
+            {             
                 var message = "User role updated successfully";
                 var result = await _authenticationservice.UpdateUserRole(authorId, newRole);
                 if (result == "User not found"){
@@ -85,6 +84,7 @@ namespace BookStoreManager.API.Controllers
 
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult> GetAllAuthors()
         {
             try{
@@ -93,7 +93,7 @@ namespace BookStoreManager.API.Controllers
                  {
                     ReferenceHandler = ReferenceHandler.Preserve
                  };
-                 return Ok(JsonSerializer.Serialize(authors, options));
+                 return Ok(authors);
             } catch(Exception ex)
             {
                 throw new Exception(ex.Message);
@@ -147,8 +147,6 @@ namespace BookStoreManager.API.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
-        [Authorize(Policy = "AdminOnly")]
         [HttpDelete("{authorId}")]
         public async Task<ActionResult> DeleteBook(Guid authorId)
         {

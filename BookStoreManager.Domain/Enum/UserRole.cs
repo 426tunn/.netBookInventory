@@ -5,8 +5,10 @@ namespace BookStoreManager.Domain.Enum
     public enum UserRole
     {
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    User,
+    Admin,
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    Admin
+    User
     }
 }
+
+//UNUSED
