@@ -16,4 +16,21 @@ namespace BookStoreManager.Domain.DTOs
         [RegularExpression("^(Admin|User|SuperAdmin)$", ErrorMessage = "Role must be either 'Admin' or 'User'.")]
         public string? Role { get; set; }
     }
+
+    public class authorWithBooksDTO
+    {
+
+        public string Firstname { get; set; } = null!;
+        public string Lastname { get; set; } = null!;
+        public string Email { get; set; } = null!;
+        public string Role { get; set; } = null!;
+        public IEnumerable<BookSummaryDTO> Books { get; set; }   = null!;      
+    }
+
+    public class BookSummaryDTO 
+    {
+        public Guid Id { get; set; }
+        public string Title { get; set; } = null!;
+        public int Year { get; set; }
+    }
 }

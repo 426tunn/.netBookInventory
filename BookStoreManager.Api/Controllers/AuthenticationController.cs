@@ -89,11 +89,26 @@ namespace BookStoreManager.API.Controllers
         {
             try{
                  var authors = await _authenticationservice.GetAllAsync();
-                 var options = new JsonSerializerOptions
-                 {
-                    ReferenceHandler = ReferenceHandler.Preserve
-                 };
-                 return Ok(authors);
+                 // To prevent circular reference issue when serializing the Author entities along with their related Book entities.
+                //  var options = new JsonSerializerOptions
+                //  {
+                //     ReferenceHandler = ReferenceHandler.Preserve
+                //  };
+                //  return Ok(JsonSerializer.Serialize(authors, options));
+
+                var authorWithBooks = authors.Select(a => new authorWithBooksDTO
+                {
+                    Firstname = a.Firstname,
+                    Lastname = a.Lastname,
+                    Email = a.Email,
+                    Role = a.Role!,
+                    Books = a.Books?.Select(b => new BookSummaryDTO
+                    {
+                        Id = b.Id,
+                        Title = b.Title
+                    }) ?? Enumerable.Empty<BookSummaryDTO>()                  
+                });
+                return Ok(authorWithBooks);
             } catch(Exception ex)
             {
                 throw new Exception(ex.Message);
