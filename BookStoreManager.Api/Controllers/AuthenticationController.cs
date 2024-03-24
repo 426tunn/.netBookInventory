@@ -10,6 +10,8 @@ using System.Text.Json.Serialization;
 using BookStoreManager.Data;
 using BookStoreManager.Service.Service.Interface;
 using BookStoreManager.Domain.Enum;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace BookStoreManager.API.Controllers
 {
@@ -63,6 +65,28 @@ namespace BookStoreManager.API.Controllers
         //     return Ok("Logout successful");
         // }
      
+         [HttpPut("profile")]
+        // [Authorize]
+        public async Task<IActionResult> ChangeUserProfile([FromBody] UpdateProfileDTO request)
+        {
+            // Get the current user's ID from the JWT token
+            var userId = User.FindFirstValue(JwtRegisteredClaimNames.Sub);
+            
+            var author = await _authenticationservice.GetAuthor(Guid.Parse(userId));
+            if (author == null)
+            {
+                return NotFound("User not found");
+            }
+
+            author.Firstname = request.Firstname ?? author.Firstname;
+            author.Lastname = request.Lastname ?? author.Lastname;
+            author.Email = request.Email ?? author.Email;
+            
+             var result = await _authenticationservice.UpdateUserProfile(Guid.Parse(userId), request);
+
+            return Ok(result);
+        }
+       
         [HttpPut("role/{authorId}")]
         public async Task<IActionResult>UpdateUserRole(Guid authorId, [FromBody] string newRole)
         {
@@ -85,6 +109,7 @@ namespace BookStoreManager.API.Controllers
 
         [HttpGet]
         [Authorize]
+        [Authorize(Policy = "Admin")]
         public async Task<ActionResult> GetAllAuthors()
         {
             try{
@@ -117,6 +142,8 @@ namespace BookStoreManager.API.Controllers
         }
 
         [HttpGet("{authorId}")]
+        [Authorize]
+        [Authorize(Policy = "Admin")] // Only admins are allowed to retrieve an author by id.
         public async Task<ActionResult> GetAuthor(Guid authorId)
         {
             try {

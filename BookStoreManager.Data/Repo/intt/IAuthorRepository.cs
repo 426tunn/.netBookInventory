@@ -16,6 +16,7 @@ namespace BookStoreManager.Data.Repo.intt
          Task<Author?> GetAuthorById(Guid id);
          Task DeleteAuthor(Guid id); 
          Task<string> UpdateUserRole(Guid id, string newRole);
+         Task<string> UpdateProfile(Guid id,UpdateProfileDTO profile);
          Task<string> GetUserRole(Guid id);
          Task SaveChangesAsync();   
     }

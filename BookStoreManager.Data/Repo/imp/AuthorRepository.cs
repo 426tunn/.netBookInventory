@@ -8,6 +8,7 @@ using BookStoreManager.Data.Repo.intt;
 using BookStoreManager.Domain.DTOs;
 using BookStoreManager.Domain.Entities;
 using BookStoreManager.Domain.Enum;
+using BookStoreManager.Domain.Utils;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStoreManager.Data.Repo.imp
@@ -29,7 +30,10 @@ namespace BookStoreManager.Data.Repo.imp
     public async Task<string> CreateAuthor(AuthorDTO author)
      {
            var newAuthor = _mapper.Map<Author>(author);
-           
+            if (!ValidationUtils.IsValidEmail(author.Email))
+            {
+                throw new Exception("Invalid email");
+            }
            await _context.AddAsync(newAuthor);
            await _context.SaveChangesAsync();
            return "Author created successfully";
@@ -124,7 +128,7 @@ namespace BookStoreManager.Data.Repo.imp
 
         public Task<string> GetUserRole(Guid id)
         {
-              var authorExists =  _context.Authors;
+            var authorExists =  _context.Authors;
             if (authorExists == null)
             {
                 throw new Exception("Context is null");
@@ -136,6 +140,37 @@ namespace BookStoreManager.Data.Repo.imp
                 throw new Exception("Author does not exist");
             }      
             return Task.FromResult(existingAuthor.Role ?? string.Empty);  
+        }
+
+        public async Task<string> UpdateProfile(Guid id, UpdateProfileDTO profile)
+        {
+            var authorExists =  _context.Authors;
+            if (authorExists == null)
+            {
+                throw new Exception("Context is null");
+            }        
+            var existingAuthor =  authorExists.FirstOrDefault(a => a.Id == id);
+            if (existingAuthor == null)
+            {
+                throw new Exception("Author does not exist");
+            }      
+            if (!string.IsNullOrEmpty(profile.Firstname))
+            {
+                existingAuthor.Firstname = profile.Firstname;
+            }
+
+            if (!string.IsNullOrEmpty(profile.Lastname))
+            {
+                existingAuthor.Lastname = profile.Lastname;
+            }
+
+            if (!string.IsNullOrEmpty(profile.Email))
+            {
+                existingAuthor.Email = profile.Email;
+            }
+
+            await _context.SaveChangesAsync();
+            return "Author profile updated successfully";
         }
     }
 }
